@@ -8,13 +8,17 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
+import Reusable
 
-class UserListTableCell: TableBaseCell {
+class UserListTableCell: TableBaseCell, Reusable {
     
     // MARK:- Properties
     
     fileprivate let orgCell = "orgCell"
     var orgList: [[String : Any]] = []
+    var disposeBag = DisposeBag()
     
     // MARK: Controls
     
@@ -51,9 +55,11 @@ class UserListTableCell: TableBaseCell {
     // MARK:- Functions
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         userProfileImageView.image = nil
         userNameLabel.text = nil
         scoreLabel.text = nil
+        disposeBag = DisposeBag()
     }
     
     override func setupCell() {
@@ -88,6 +94,21 @@ class UserListTableCell: TableBaseCell {
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 5
             flowLayout.itemSize = CGSize(width: 40, height: 40)
+        }
+    }
+    
+    func setData(_ user: GithubUserModel) {
+        if let url = user.avatar_url {
+            userProfileImageView.setImageAsync(from: url.url(), default: nil)
+                .disposed(by: disposeBag)
+        } else {
+            userProfileImageView.image = nil
+        }
+        userNameLabel.text = user.login
+        if let scoreString = user.score?.description {
+            scoreLabel.text = "score: " + scoreString
+        } else {
+            scoreLabel.text = "score: -"
         }
     }
 }

@@ -15,7 +15,7 @@ class TableBaseCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("xib is not used")
     }
     
     func setupCell() {

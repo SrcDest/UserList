@@ -1,24 +1,57 @@
 PODS:
-  - Kingfisher (5.1.0)
+  - Alamofire (4.8.2)
+  - Kingfisher (5.4.0)
   - ObjectMapper (3.4.2)
-  - SnapKit (4.0.1)
+  - Reusable (4.1.0):
+    - Reusable/Storyboard (= 4.1.0)
+    - Reusable/View (= 4.1.0)
+  - Reusable/Storyboard (4.1.0)
+  - Reusable/View (4.1.0)
+  - RxAlamofire (5.0.0):
+    - RxAlamofire/Core (= 5.0.0)
+  - RxAlamofire/Core (5.0.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - SnapKit (5.0.0)
 
 DEPENDENCIES:
   - Kingfisher
   - ObjectMapper
-  - SnapKit (~> 4.0.0)
+  - Reusable
+  - RxAlamofire
+  - RxCocoa
+  - RxSwift
+  - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Kingfisher
     - ObjectMapper
+    - Reusable
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
 
 SPEC CHECKSUMS:
-  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Kingfisher: 9c8f2cc6710334e06f32ba2b45e77707d5e2f0c9
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
+  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: ee8bdf32bae97e1e61d5e988456461424c0ea3c6
+PODFILE CHECKSUM: f935b748a8fd8b8a67b82fdbf2bcc1c06e0dfcb6
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.1
