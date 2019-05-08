@@ -1,0 +1,24 @@
+PODS:
+  - Kingfisher (5.1.0)
+  - ObjectMapper (3.4.2)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - Kingfisher
+  - ObjectMapper
+  - SnapKit (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - ObjectMapper
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: ee8bdf32bae97e1e61d5e988456461424c0ea3c6
+
+COCOAPODS: 1.6.0.beta.1
