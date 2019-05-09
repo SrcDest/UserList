@@ -38,6 +38,10 @@ class GithubUserViewModel {
             }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { (response, json) -> [GithubUserModel] in
+                print(response.allHeaderFields)
+                if let linkHeader = response.allHeaderFields["Link"] as? String {
+                    
+                }
                 if let userSearch = Mapper<GithubSearchUserModel>().map(JSONObject: json), let userList = userSearch.items {
                     return userList
                 } else {
@@ -49,5 +53,20 @@ class GithubUserViewModel {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
             .bind(to: users)
+    }
+    
+    func parseHeader(_ linkHeader: String) -> String {
+        let links = linkHeader.components(separatedBy: ",")
+        var dict: [String : String] = [:]
+        links.forEach({
+            let components = $0.components(separatedBy:"; ")
+            let cleanPath = components[0].trimmingCharacters(in: CharacterSet(charactersIn: " <>"))
+            dict[components[1]] = cleanPath
+        })
+        if let nextPagePath = dict["rel=\"next\""] {
+            return nextPagePath
+        } else {
+            return ""
+        }
     }
 }

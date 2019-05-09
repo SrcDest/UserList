@@ -55,7 +55,6 @@ class ViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(UserListTableCell.self, forCellReuseIdentifier: userCell)
         tableView.register(LoadingCell.self, forCellReuseIdentifier: loadingCell)
-        tableView.delegate = self
         return tableView
     }()
     
@@ -133,6 +132,9 @@ class ViewController: UIViewController {
                 self?.userTableView.deselectRow(at: indexPath, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        userTableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -161,7 +163,7 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK:- Table view delegate
+// MARK:- TableView delegate
 
 extension ViewController: UITableViewDelegate {
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -192,7 +194,7 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
-// MARK:- Table view datasource
+// MARK:- TableView datasource
 
 //extension ViewController: UITableViewDataSource {
 //    func numberOfSections(in tableView: UITableView) -> Int {
