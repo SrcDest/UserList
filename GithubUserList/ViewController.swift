@@ -121,6 +121,12 @@ class ViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        githubUserViewModel.users
+            .map { $0.count != 0 }
+            .observeOn(MainScheduler.instance)
+            .bind(to: nothingLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
         userTableView.rx.itemSelected
             .asDriver()
             .drive(onNext: { [weak self] indexPath in
@@ -154,21 +160,6 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
     }
 }
-
-// MARK:- Text field delegate
-
-//extension ViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        guard let searchKeyword = textField.text else { return false }
-//        debouncer.renewInterval()
-//
-//        userTableView.setContentOffset(.zero, animated: false)
-//        selectedIndexPath.removeAll()
-//        let urlString = "https://api.github.com/search/users?q=" + searchKeyword
-//        getGithubUserList(urlString)
-//        return true
-//    }
-//}
 
 // MARK:- Table view delegate
 
