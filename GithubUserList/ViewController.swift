@@ -16,17 +16,19 @@ class ViewController: UIViewController {
 
     // MARK:- Properties
     
-    fileprivate let userCell = "userCell"
-    fileprivate let loadingCell = "loadingCell"
-    let disposeBag = DisposeBag()
-    var githubUserViewModel: GithubUserViewModel!
+    private var showAnimatingCell = true
+    private let userCell = "userCell"
+    private let loadingCell = "loadingCell"
+    private let disposeBag = DisposeBag()
     
-    var searchText: Observable<String> {
+    private var searchText: Observable<String> {
         return searchTextfield.rx.text.orEmpty
             .filter { $0.count > 0 }
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
     }
+    
+    var githubUserViewModel: GithubUserViewModel!
     
     // MARK: Controls
     
