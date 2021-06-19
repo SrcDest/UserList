@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     private var searchText: Observable<String> {
         return searchTextfield.rx.text.orEmpty
             .filter { $0.count > 0 }
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(250), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
     }
     
